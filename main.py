@@ -2,6 +2,7 @@ import os
 import time
 import locale
 import logging
+from logging import handlers
 
 import utils as u
 
@@ -23,8 +24,8 @@ fname = f"logg{u.now()}.log"
 LOG_PATH = os.path.join(LOG_DIR, fname)
 
 # file_handler = logging.FileHandler(os.path.join(LOG_DIR, f"logg{u.now()}.log"), mode='a')
-# file_handler = logging.handlers.TimedRotatingFileHandler(LOG_PATH, when="S", interval=1, backupCount=10, encoding="utf-8", delay=False)
-file_handler = logging.handlers.RotatingFileHandler(LOG_PATH, mode='a', maxBytes=MAX_BYTES, backupCount=5, encoding="utf-8", delay=False)
+# file_handler = handlers.TimedRotatingFileHandler(LOG_PATH, when="S", interval=1, backupCount=10, encoding="utf-8", delay=False)
+file_handler = handlers.RotatingFileHandler(LOG_PATH, mode='a', maxBytes=MAX_BYTES, backupCount=5, encoding="utf-8", delay=False)
 
 formatter = logging.Formatter('%(levelname)s: %(asctime)s f=%(funcName)s %(filename)s:%(lineno)d = %(message)s', datefmt="%Y-%m-%d %H-%M-%S")
 file_handler.setFormatter(formatter)
